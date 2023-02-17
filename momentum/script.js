@@ -45,7 +45,7 @@ showDate();
 //   time.textContent = hours + ":" + minutes + ":" + seconds;
 // });
 
-//date - doesn`t work properly
+//date - doesn't work properly
 
 // const day = document.querySelector(".date");
 // console.log(day);
@@ -70,4 +70,26 @@ showDate();
 //   date.textContent = "(${day}), ${month} ${number}";
 // }
 
-//
+//greeting
+
+const greeting = document.querySelector(".greeting");
+
+function getTimeOfDay() {
+  const date = new Date();
+  const hours = date.getHours();
+  console.log(hours);
+  if (hours >= 00) {
+    timeOfDay = "night";
+  }
+  if (hours >= 07) {
+    timeOfDay = "morning";
+  }
+  if (hours >= 13) {
+    timeOfDay = "afternoon";
+  }
+  if (hours >= 18) {
+    timeOfDay = "afternoon";
+  }
+  greeting.textContent = `Good ${timeOfDay}`;
+}
+getTimeOfDay();
