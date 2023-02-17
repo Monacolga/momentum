@@ -88,8 +88,24 @@ function getTimeOfDay() {
     timeOfDay = "afternoon";
   }
   if (hours >= 18) {
-    timeOfDay = "afternoon";
+    timeOfDay = "evening";
   }
   greeting.textContent = `Good ${timeOfDay}`;
 }
 getTimeOfDay();
+
+//name
+
+const userName = document.querySelector(".name");
+
+function setLocalStorage() {
+  localStorage.setItem("name", userName.value);
+}
+window.addEventListener("beforeunload", setLocalStorage);
+
+function getLocalStorage() {
+  if (localStorage.getItem("name")) {
+    userName.value = localStorage.getItem("name");
+  }
+}
+window.addEventListener("load", getLocalStorage);
