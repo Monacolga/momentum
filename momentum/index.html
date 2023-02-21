@@ -8,6 +8,7 @@
       href="https://fonts.googleapis.com/css?family=Roboto:regular,700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="./css/owfont-regular.css" />
     <link rel="stylesheet" href="style.css" />
     <title>Momentum</title>
   </head>
@@ -28,13 +29,15 @@
         </ul>
       </div>
       <div class="weather">
-        <input class="weather__city" type="text" />
-        <i class="weather__icon"></i>
-        <div class="weather__discription">
-          <div class="weather__temperature">-3°C brocken clouds</div>
-          <div class="weather__wind">Wind speed: 5m/s</div>
-          <div class="weather__humidity">Humidity: 91%</div>
+        <input class="weather-city" type="text" placeholder="[Enter city]" />
+        <i class="weather-icon"></i>
+        <div class="weather-error"></div>
+        <div class="weather-content">
+          <span class="weather-temperature"></span>
+          <span class="weather-discription"></span>
         </div>
+        <div class="weather-wind"></div>
+        <div class="weather-humidity"></div>
       </div>
     </header>
     <main class="main">

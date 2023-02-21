@@ -1,4 +1,4 @@
-//time&date
+//---------------time&date----------------//
 
 const currentTime = document.querySelector(".time");
 const currentDate = document.querySelector(".date");
@@ -70,21 +70,20 @@ showDate();
 //   date.textContent = "(${day}), ${month} ${number}";
 // }
 
-//greeting
+//-------------------greeting-------------------//
 
 const greeting = document.querySelector(".greeting");
 
 function getTimeOfDay() {
   const date = new Date();
   const hours = date.getHours();
-  console.log(hours);
   if (hours >= 00) {
     timeOfDay = "night";
   }
-  if (hours >= 07) {
+  if (hours >= 06) {
     timeOfDay = "morning";
   }
-  if (hours >= 13) {
+  if (hours >= 12) {
     timeOfDay = "afternoon";
   }
   if (hours >= 18) {
@@ -94,7 +93,7 @@ function getTimeOfDay() {
 }
 getTimeOfDay();
 
-//name
+//---------------------name---------------------//
 
 const userName = document.querySelector(".name");
 
@@ -109,3 +108,95 @@ function getLocalStorage() {
   }
 }
 window.addEventListener("load", getLocalStorage);
+
+//--------------------weather---------------------//
+
+const cityWeather = document.querySelector(".weather-city");
+const weatherIcon = document.querySelector(".weather-icon");
+const temperature = document.querySelector(".weather-temperature");
+const weatherDescription = document.querySelector(".weather-discription");
+const wind = document.querySelector(".weather-wind");
+const humidity = document.querySelector(".weather-humidity");
+
+cityWeather.addEventListener("change", getWeather);
+
+async function getWeather() {
+  // const url = `https://api.openweathermap.org/data/2.5/weather?q=Minsk&lang=en&appid=1ac8bb01d3acb3f87b21427e0d6e295d&units=metric`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityWeather.value}&lang=en&appid=1ac8bb01d3acb3f87b21427e0d6e295d&units=metric`;
+  const res = await fetch(url);
+  const data = await res.json();
+
+  weatherIcon.className = "weather-icon owf";
+  weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+  temperature.textContent = `${Math.round(data.main.temp)}°C`;
+  weatherDescription.textContent = data.weather[0].description;
+  wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
+  humidity.textContent = `Humidity: ${data.main.humidity}%`;
+}
+getWeather();
+
+function setCityLocalStorage() {
+  localStorage.setItem("city", cityWeather.value);
+}
+window.addEventListener("beforeunload", setCityLocalStorage);
+
+function getCityLocalStorage() {
+  if (localStorage.getItem("city")) {
+    cityWeather.value = localStorage.getItem("city");
+  }
+}
+window.addEventListener("load", getCityLocalStorage);
+
+window.addEventListener("load", getWeather);
+
+function errorWeather() {
+  const noCity = document.querySelector(".weather-error");
+
+  if (cityWeather.value === "") {
+    noCity.textContent = `Error! Please enter city`;
+  }
+  if (cityWeather.value != "") {
+    noCity.textContent = "";
+    // noCity.classList.add("active");
+    // noCity.style.display = none;
+  }
+}
+errorWeather();
+
+//--------------------slider--------------------//
+
+const body = document.querySelector("body");
+const slideNext = document.querySelector(".icon-right");
+const slidePrev = document.querySelector(".icon-left");
+
+function getRandomNum() {
+  return Math.floor(Math.random() * (20 - 1) + 1);
+}
+getRandomNum();
+
+// function setBg() {
+//   let timeOfDay = getTimeOfDay();
+//   let strNum = String(getRandomNum());
+//   let bgNum = strNum.padStart(2, "0");
+//   body.style.backgroundImage =
+//     "url('https://github.com/Monacolga/stage1-tasks/blob/assets/images/evening/01.jpg')";
+// }
+// setBg();
+
+// let randomNum;
+
+///
+slideNext.addEventListener("click", getSlideNext);
+slidePrev.addEventListener("click", getSlidePrev);
+
+///
+
+//quote of day//////////////////////////
+
+async function getQuotes() {
+  const quotes = "data.json";
+  const res = await fetch(quotes);
+  const data = await res.json();
+  console.log(data);
+}
+getQuotes();
