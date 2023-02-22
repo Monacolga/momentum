@@ -117,11 +117,11 @@ const temperature = document.querySelector(".weather-temperature");
 const weatherDescription = document.querySelector(".weather-discription");
 const wind = document.querySelector(".weather-wind");
 const humidity = document.querySelector(".weather-humidity");
+const noCity = document.querySelector(".weather-error");
 
 cityWeather.addEventListener("change", getWeather);
 
 async function getWeather() {
-  // const url = `https://api.openweathermap.org/data/2.5/weather?q=Minsk&lang=en&appid=1ac8bb01d3acb3f87b21427e0d6e295d&units=metric`;
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityWeather.value}&lang=en&appid=1ac8bb01d3acb3f87b21427e0d6e295d&units=metric`;
   const res = await fetch(url);
   const data = await res.json();
@@ -149,19 +149,16 @@ window.addEventListener("load", getCityLocalStorage);
 
 window.addEventListener("load", getWeather);
 
-function errorWeather() {
-  const noCity = document.querySelector(".weather-error");
-
-  if (cityWeather.value === "") {
-    noCity.textContent = `Error! Please enter city`;
-  }
-  if (cityWeather.value != "") {
-    noCity.textContent = "";
-    // noCity.classList.add("active");
-    // noCity.style.display = none;
-  }
-}
-errorWeather();
+// function errorWeather() {
+//   if (cityWeather.value === "") {
+//     noCity.textContent = `Error! Please enter city`;
+//   } else {
+//     noCity.textContent = "";
+//     // noCity.classList.add("active");
+//     // noCity.style.display = none;
+//   }
+// }
+// errorWeather();
 
 //--------------------slider--------------------//
 
@@ -169,34 +166,53 @@ const body = document.querySelector("body");
 const slideNext = document.querySelector(".icon-right");
 const slidePrev = document.querySelector(".icon-left");
 
+let randomNum = getRandomNum();
+
 function getRandomNum() {
-  return Math.floor(Math.random() * (20 - 1) + 1);
+  return Math.floor(Math.random() * (20 - 1 + 1)) + 1;
 }
 getRandomNum();
 
-// function setBg() {
-//   let timeOfDay = getTimeOfDay();
-//   let strNum = String(getRandomNum());
-//   let bgNum = strNum.padStart(2, "0");
-//   body.style.backgroundImage =
-//     "url('https://github.com/Monacolga/stage1-tasks/blob/assets/images/evening/01.jpg')";
-// }
-// setBg();
+function setBg() {
+  let bgNum = String(getRandomNum()).padStart(2, "0");
+  const img = new Image();
+  img.src = `https://raw.githubusercontent.com/monacolga/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`;
+  img.onload = () => {
+    body.style.backgroundImage = `url("${img.src}")`;
+  };
+}
+setBg();
 
-// let randomNum;
-
-///
 slideNext.addEventListener("click", getSlideNext);
+
+function getSlideNext() {
+  if (randomNum < 20) {
+    randomNum += 1;
+  }
+  if (randomNum === 20) {
+    randomNum === 1;
+  }
+  setBg();
+}
+
 slidePrev.addEventListener("click", getSlidePrev);
 
-///
-
-//quote of day//////////////////////////
-
-async function getQuotes() {
-  const quotes = "data.json";
-  const res = await fetch(quotes);
-  const data = await res.json();
-  console.log(data);
+function getSlidePrev() {
+  if (randomNum < 20) {
+    randomNum -= 1;
+  }
+  if (randomNum === 1) {
+    randomNum === 20;
+  }
+  setBg();
 }
-getQuotes();
+
+//-------------------quote of day-------------------//
+
+// async function getQuotes() {
+//   const quotes = "data.json";
+//   const res = await fetch(quotes);
+//   const data = await res.json();
+//   console.log(data);
+// }
+// getQuotes();
