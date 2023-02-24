@@ -214,7 +214,7 @@ const quoteOfDay = document.querySelector(".quote-text");
 const authorOfQuote = document.querySelector(".quote-author");
 
 function getNumberOfQuote() {
-  return Math.floor(Math.random() * (1643 - 1 + 1)) + 1;
+  return Math.floor(Math.random() * (1547 - 1 + 1)) + 1;
 }
 console.log(getNumberOfQuote());
 
