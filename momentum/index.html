@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:regular,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/owfont-regular.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Momentum</title>
+  </head>
+  <body>
+    <div class="background_img"></div>
+    <header class="header">
+      <div class="player">
+        <div class="player-control">
+          <div class="player-icon icon-pre"></div>
+          <div class="player-icon icon-play"></div>
+          <div class="player-icon icon-next"></div>
+        </div>
+        <ul class="player-list">
+          <li class="player-item">Aqua Caelestis</li>
+          <li class="player-item">River Flows In You</li>
+          <li class="player-item">Summer Wind</li>
+          <li class="player-item">Ennio Morricone</li>
+        </ul>
+      </div>
+      <div class="weather">
+        <input class="weather-city" type="text" placeholder="[Enter city]" />
+        <i class="weather-icon"></i>
+        <div class="weather-error"></div>
+        <div class="weather-content">
+          <span class="weather-temperature"></span>
+          <span class="weather-discription"></span>
+        </div>
+        <div class="weather-wind"></div>
+        <div class="weather-humidity"></div>
+      </div>
+    </header>
+    <main class="main">
+      <div class="slider-icons">
+        <button class="slider-icon icon-left"></button>
+        <button class="slider-icon icon-right"></button>
+      </div>
+      <div class="time"></div>
+      <div class="date"></div>
+      <div class="greeting-content">
+        <span class="greeting"></span>
+        <input class="name" placeholder="[Enter name]" type="text" />
+      </div>
+    </main>
+    <footer class="footer">
+      <button class="change-quote"></button>
+      <div class="quote-content">
+        <div class="quote-text"></div>
+        <div class="quote-author"></div>
+      </div>
+    </footer>
+    <script src="./script.js"></script>
+  </body>
+</html>
