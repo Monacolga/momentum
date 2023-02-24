@@ -209,10 +209,26 @@ function getSlidePrev() {
 
 //-------------------quote of day-------------------//
 
-// async function getQuotes() {
-//   const quotes = "data.json";
-//   const res = await fetch(quotes);
-//   const data = await res.json();
-//   console.log(data);
-// }
-// getQuotes();
+const buttonQuote = document.querySelector(".change-quote");
+const quoteOfDay = document.querySelector(".quote-text");
+const authorOfQuote = document.querySelector(".quote-author");
+
+function getNumberOfQuote() {
+  return Math.floor(Math.random() * (1643 - 1 + 1)) + 1;
+}
+console.log(getNumberOfQuote());
+
+buttonQuote.addEventListener("click", getQuotes);
+
+async function getQuotes() {
+  const quotes = "data.json";
+  // console.log(quotes);
+  const res = await fetch(quotes);
+  // console.log(res);
+  const data = await res.json();
+  console.log(data);
+
+  quoteOfDay.textContent = `${data[getNumberOfQuote()].text}`;
+  authorOfQuote.textContent = `${data[getNumberOfQuote()].author}`;
+}
+getQuotes();
