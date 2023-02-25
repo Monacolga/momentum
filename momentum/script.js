@@ -143,6 +143,8 @@ window.addEventListener("beforeunload", setCityLocalStorage);
 function getCityLocalStorage() {
   if (localStorage.getItem("city")) {
     cityWeather.value = localStorage.getItem("city");
+  } else {
+    cityWeather.value - `Minsk`;
   }
 }
 window.addEventListener("load", getCityLocalStorage);
@@ -232,3 +234,9 @@ async function getQuotes() {
   authorOfQuote.textContent = `${data[getNumberOfQuote()].author}`;
 }
 getQuotes();
+
+//-----------------languages-----------------//
+
+// const greetingTranslation = {
+
+// }
