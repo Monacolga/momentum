@@ -229,7 +229,7 @@ body {
 
 .date {
   min-height: 28px;
-  font-size: 24px;
+  font-size: 30px;
   margin-bottom: 20px;
 }
 
@@ -298,7 +298,7 @@ body {
 }
 
 .quote-content {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .quote-text {
